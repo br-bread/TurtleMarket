@@ -1,3 +1,4 @@
+![project workflow](https://github.com/br-bread/homework/actions/workflows/python-package.yml/badge.svg)
 # Homework
 Репозиторий для сдачи домашек по яндексу
 ___
