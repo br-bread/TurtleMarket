@@ -35,10 +35,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 - ### Запустить проект
+#### Windows
+```
+python manage.py runserver
+```
+#### Linux
 ```
 python3 manage.py runserver
 ```
-
 Для просмотра страницы перейти на http://127.0.0.1:8000 
 
 Для хранения параметров DEBUG и SECRET_KEY используются переменные окружения. 
