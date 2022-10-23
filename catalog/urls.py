@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.item_list),
-    re_path('(?P<pk>\\d+)/', views.item_detail),
+    re_path('(?P<pk>^\\d+)/', views.item_detail),
 ]
