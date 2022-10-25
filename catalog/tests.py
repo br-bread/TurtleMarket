@@ -2,8 +2,12 @@ from django.test import Client, TestCase
 
 
 class StaticURLTests(TestCase):
+    def test_main_catalog_url(self):
+        response = Client().get('/catalog/')
+        self.assertEqual(response.status_code, 200)
+
     def test_correct_catalog_url(self):
-        tests = ['', '1/', '123/']
+        tests = ['1/', '123/']
 
         for i in range(len(tests)):
             response = Client().get('/catalog/' + tests[i])
