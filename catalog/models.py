@@ -14,6 +14,9 @@ class Tag(BaseModel):
     slug = models.CharField(max_length=200,
                             validators=[RegexValidator(regex='[a-zA-Z0-9_-]')])
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
@@ -29,6 +32,9 @@ class Category(BaseModel):
         default=100, validators=[MaxValueValidator(limit_value=32766),
                                  MinValueValidator(limit_value=1)])
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
@@ -40,11 +46,13 @@ class Item(BaseModel):
     is_published = models.BooleanField('Опубликовано', default=True)
     text = models.TextField(
         'Описание',
-        validators=[
-            AmazingValidator('превосходно', 'роскошно').call])
+        validators=[AmazingValidator('прекрасно', 'роскошно')])
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name='items')
     tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Товар'
