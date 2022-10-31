@@ -2,7 +2,7 @@ from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
 
-from Core.models import BaseModel
+from core.models import BaseModel
 
 from .validators import AmazingValidator
 
