@@ -11,8 +11,7 @@ class Tag(BaseModel):
     name = models.CharField('Название', max_length=150,
                             help_text='Максимальная длина - 150 символов')
     is_published = models.BooleanField('Опубликовано', default=True)
-    slug = models.CharField(max_length=200,
-                            validators=[RegexValidator(regex='[a-zA-Z0-9_-]')])
+    slug = models.SlugField(max_length=200)
 
     def __str__(self):
         return self.name
@@ -26,11 +25,8 @@ class Category(BaseModel):
     name = models.CharField('Название', max_length=150,
                             help_text='Максимальная длина - 150 символов')
     is_published = models.BooleanField('Опубликовано', default=True)
-    slug = models.CharField(max_length=200,
-                            validators=[RegexValidator(regex='[a-zA-Z0-9_-]')])
-    weight = models.IntegerField(
-        default=100, validators=[MaxValueValidator(limit_value=32766),
-                                 MinValueValidator(limit_value=1)])
+    slug = models.SlugField(max_length=200)
+    weight = models.PositiveSmallIntegerField(default=100)
 
     def __str__(self):
         return self.name
