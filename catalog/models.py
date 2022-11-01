@@ -42,7 +42,7 @@ class Item(BaseModel):
     is_published = models.BooleanField('Опубликовано', default=True)
     text = models.TextField(
         'Описание',
-        validators=[AmazingValidator('прекрасно', 'роскошно')])
+        validators=[AmazingValidator('превосходно', 'роскошно')])
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
                                  related_name='items')
     tags = models.ManyToManyField(Tag)

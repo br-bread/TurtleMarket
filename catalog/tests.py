@@ -1,4 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
+
+from .models import Category, Item, Tag
 
 
 class StaticURLTests(TestCase):
@@ -22,3 +25,48 @@ class StaticURLTests(TestCase):
             response = Client().get('/catalog/' + tests[i] + '/')
             with self.subTest(f'{tests[i][:]} is not a positive integer', i=i):
                 self.assertNotEqual(response.status_code, 200)
+
+
+class ModelItemTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.item_category = Category.objects.create(name='name',
+                                                    is_published=1,
+                                                    slug='slug',
+                                                    weight=100)
+        cls.item_tag = Tag.objects.create(name='name',
+                                          is_published=1,
+                                          slug='slug')
+
+    def test_amazing_validator_correct(self):
+        item_count = Item.objects.count()
+        item_texts = ['превосходно роскошно', 'ПрЕвосХОДно', 'Роскошно!',
+                      'Не превосходно', 'Потрясающе(превосходно)',
+                      'Замечательно! Превосходно!']
+        for i in range(len(item_texts)):
+            new_item = Item(name='name',
+                            is_published=1,
+                            text=item_texts[i],
+                            category=self.item_category)
+            new_item.full_clean()
+            new_item.save()
+            new_item.tags.add(self.item_tag)
+
+        self.assertNotEqual(item_count, Item.objects.count())
+
+    def test_amazing_validator_wrong(self):
+        item_count = Item.objects.count()
+        with self.assertRaises(ValidationError):
+            item_texts = ['Прекрасно', 'пре восход но',
+                          '1234', 'Препревосходно123']
+            for i in range(len(item_texts)):
+                new_item = Item(name='name',
+                                is_published=1,
+                                text=item_texts[i],
+                                category=self.item_category)
+                new_item.full_clean()
+                new_item.save()
+                new_item.tags.add(self.item_tag)
+
+        self.assertEqual(item_count, Item.objects.count())
