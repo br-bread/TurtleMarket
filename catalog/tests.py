@@ -31,13 +31,11 @@ class ModelItemTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.item_category = Category.objects.create(name='name',
-                                                    is_published=1,
-                                                    slug='slug',
+        cls.item_category = Category.objects.create(name='test_category',
+                                                    slug='test_category_slug',
                                                     weight=100)
-        cls.item_tag = Tag.objects.create(name='name',
-                                          is_published=1,
-                                          slug='slug')
+        cls.item_tag = Tag.objects.create(name='test_tag',
+                                          slug='test_tag_slug')
 
     def test_amazing_validator_correct(self):
         item_count = Item.objects.count()
@@ -45,15 +43,14 @@ class ModelItemTest(TestCase):
                       'Не превосходно', 'Потрясающе(превосходно)',
                       'Замечательно! Превосходно!']
         for i in range(len(item_texts)):
-            new_item = Item(name='name',
-                            is_published=1,
+            new_item = Item(name=f'test_item{i}',
                             text=item_texts[i],
                             category=self.item_category)
             new_item.full_clean()
             new_item.save()
             new_item.tags.add(self.item_tag)
 
-        self.assertNotEqual(item_count, Item.objects.count())
+        self.assertEqual(item_count, Item.objects.count() - 6)
 
     def test_amazing_validator_wrong(self):
         item_count = Item.objects.count()
