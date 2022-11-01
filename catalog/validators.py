@@ -25,8 +25,8 @@ class AmazingValidator:
                 if i.lower() in words_in_value:
                     return value
 
-        raise ValidationError(f'В {value} нет ни одного'
-                              f' из слов {self.must_have_words}')
+        raise ValidationError(
+            f'В {value} нет ни одного из слов {self.must_have_words}')
 
     def __eq__(self, other):
         return (isinstance(

@@ -1,5 +1,3 @@
-from django.core.validators import (MaxValueValidator, MinValueValidator,
-                                    RegexValidator)
 from django.db import models
 
 from core.models import BaseModel
@@ -39,7 +37,7 @@ class Item(BaseModel):
     text = models.TextField(
         'описание',
         validators=[AmazingValidator('превосходно', 'роскошно')],
-        help_text='Не забудьте указать роскошные и превосходые стороны')
+        help_text='Не забудьте указать роскошные и превосходные стороны')
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE,
                                  verbose_name='категория')
