@@ -1,14 +1,14 @@
 ![project workflow](https://github.com/br-bread/homework/actions/workflows/python-package.yml/badge.svg)
 # Homework
-Репозиторий для сдачи домашек по яндексу
+Repository for doing Yandex homework
 ___
-## Инструкция по запуску
+## Instalation
 
-- ### Установить virtualenv
+- ### Install virtualenv
 ```
 pip install virtualenv
 ```
-- ### Создать venv
+- ### Create venv
 #### Windows
 ```
 python -m venv venv
@@ -17,9 +17,9 @@ python -m venv venv
 ```
 python3 -m venv venv
 ```
-- ### Активировать venv
+- ### Activate venv
 #### Windows
-(Для Windows сначала нужно разрешить выполнение PowerShell скриптов)
+(For Windows you need to allow PowerShell scripts to run)
 ```
 Set-ExecutionPolicy Unrestricted -Scope Process
 ```
@@ -30,11 +30,11 @@ venv\Scripts\activate.ps1
 ```
 source venv/bin/activate
 ```
-- ### Установить requirements.txt
+- ### Install requirements.txt
 ```
 pip install -r requirements.txt
 ```
-- ### Запустить проект
+- ### Run the project
 #### Windows
 ```
 python manage.py runserver
@@ -43,7 +43,25 @@ python manage.py runserver
 ```
 python3 manage.py runserver
 ```
-Для просмотра страницы перейти на http://127.0.0.1:8000 
+- ### Migrate the migrations
+#### Windows
+```
+python manage.py migrate
+```
+#### Linux
+```
+python3 manage.py migrate
+```
+- ### Load data from fixtures
+#### Windows
+```
+python manage.py loaddata catalog/fixtures/data.json
+```
+#### Linux
+```
+python3 manage.py loaddata catalog/fixtures/data.json
+```
+Then go to http://127.0.0.1:8000
 
-Для хранения параметров DEBUG и SECRET_KEY используются переменные окружения. 
-При необходимости можно создать и установить значения, или поменять значение в settings.py
+To store DEBUG and SECRET_KEY parameters are used environment variables.
+You can create and set values, or change the value in settings.py
