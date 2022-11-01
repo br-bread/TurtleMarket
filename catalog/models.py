@@ -1,3 +1,5 @@
+from enum import unique
+from tabnanny import verbose
 from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
@@ -8,48 +10,47 @@ from .validators import AmazingValidator
 
 
 class Tag(BaseModel):
-    name = models.CharField('Название', max_length=150,
-                            help_text='Максимальная длина - 150 символов')
-    is_published = models.BooleanField('Опубликовано', default=True)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, help_text='Максимум 200 символов')
+
+    class Meta:
+        verbose_name = 'тег'
+        verbose_name_plural = 'теги'
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name = 'Тег'
-        verbose_name_plural = 'Теги'
 
 
 class Category(BaseModel):
-    name = models.CharField('Название', max_length=150,
-                            help_text='Максимальная длина - 150 символов')
-    is_published = models.BooleanField('Опубликовано', default=True)
-    slug = models.SlugField(max_length=200)
+    slug = models.SlugField(max_length=200, help_text='Максимум 200 символов')
     weight = models.PositiveSmallIntegerField(default=100)
+
+    class Meta:
+        ordering = ('weight', 'id')
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
 
 
 class Item(BaseModel):
-    name = models.CharField('Название', max_length=150,
-                            help_text='Максимальная длина - 150 символов')
-    is_published = models.BooleanField('Опубликовано', default=True)
+    name = models.CharField('название',
+                            max_length=150,
+                            help_text='Максимальная длина - 150 символов',
+                            unique=False)
     text = models.TextField(
-        'Описание',
-        validators=[AmazingValidator('превосходно', 'роскошно')])
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                 related_name='items')
-    tags = models.ManyToManyField(Tag)
+        'описание',
+        validators=[AmazingValidator('превосходно', 'роскошно')],
+        help_text='Не забудьте указать роскошные и превосходые стороны')
+    category = models.ForeignKey(Category,
+                                 on_delete=models.CASCADE,
+                                 verbose_name='категория')
+    tags = models.ManyToManyField(Tag, verbose_name='тег')
+
+    class Meta:
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
+        default_related_name = 'items'
 
     def __str__(self):
         return self.name
-
-    class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
