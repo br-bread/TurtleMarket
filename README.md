@@ -7,7 +7,7 @@ Added test database
 - Admin login: test_admin
 - Admin password: password
 ## Structure of db
-![er-diagram](readme_images/er.png)
+![er-diagram](readme_images/erd.png)
 ___
 ## Instalation
 
