@@ -50,7 +50,7 @@ class ModelItemTest(TestCase):
             new_item.save()
             new_item.tags.add(self.item_tag)
 
-        self.assertEqual(item_count, Item.objects.count() - 6)
+        self.assertEqual(item_count, Item.objects.count() - len(item_texts))
 
     def test_amazing_validator_wrong(self):
         item_count = Item.objects.count()
