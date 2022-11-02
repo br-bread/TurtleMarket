@@ -1,6 +1,9 @@
 ![project workflow](https://github.com/br-bread/homework/actions/workflows/python-package.yml/badge.svg)
 # Homework
 Repository for doing Yandex homework
+Added test database
+Admin login: test_admin
+Admin password: password
 ___
 ## Instalation
 
