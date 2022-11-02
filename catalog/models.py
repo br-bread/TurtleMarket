@@ -2,7 +2,7 @@ from django.db import models
 
 from core.models import BaseModel
 
-from .validators import AmazingValidator
+from .validators import amazing_validator
 
 
 class Tag(BaseModel):
@@ -36,7 +36,7 @@ class Item(BaseModel):
                             unique=False)
     text = models.TextField(
         'описание',
-        validators=[AmazingValidator('превосходно', 'роскошно')],
+        validators=[amazing_validator('превосходно', 'роскошно')],
         help_text='Не забудьте указать роскошные и превосходные стороны')
     category = models.ForeignKey(Category,
                                  on_delete=models.CASCADE,
