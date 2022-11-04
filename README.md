@@ -2,13 +2,6 @@
 # Homework
 ## Repository for doing Yandex homework
 ___
-Added test database
-
-- Admin login: test_admin
-- Admin password: password
-## Structure of db
-![er-diagram](readme_images/erd.png)
-___
 ## Instalation
 
 - ### Install virtualenv
@@ -41,15 +34,6 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-- ### Run the project
-#### Windows
-```
-python manage.py runserver
-```
-#### Linux
-```
-python3 manage.py runserver
-```
 - ### Migrate the migrations
 #### Windows
 ```
@@ -59,7 +43,7 @@ python manage.py migrate
 ```
 python3 manage.py migrate
 ```
-- ### Load data from fixtures
+- ### Load test data from fixtures
 #### Windows
 ```
 python manage.py loaddata catalog/fixtures/data.json
@@ -68,7 +52,22 @@ python manage.py loaddata catalog/fixtures/data.json
 ```
 python3 manage.py loaddata catalog/fixtures/data.json
 ```
+- ### Run the project
+#### Windows
+```
+python manage.py runserver
+```
+#### Linux
+```
+python3 manage.py runserver
+```
 Then go to http://127.0.0.1:8000
 
 To store DEBUG and SECRET_KEY parameters are used environment variables.
 You can create and set values, or change the value in settings.py
+___
+## Added test database
+### Structure of db
+![er-diagram](readme_images/erd.png)
+- Admin login: test_admin
+- Admin password: password
