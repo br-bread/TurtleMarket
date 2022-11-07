@@ -1,0 +1,28 @@
+:root {
+    --color_background: #dbf9c9;
+    --color_light: #e0e5e1;
+    --color_dark: #54654b;
+}
+
+header {
+    padding: 10px 0;
+    background: var(--color_dark);
+}
+
+main {
+    padding: 250px 0;
+    background: var(--color_background);
+}
+
+footer {
+    background: var(--color_background);
+}
+
+.menu a {
+    color: var(--color_light);
+    text-decoration: none;
+}
+
+.colorText {
+    color: var(--color_dark);
+}

@@ -1,8 +1,10 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def item_list(request):
-    return HttpResponse('Список элементов')
+    template_name = 'catalog/index.html'
+    return render(request, template_name, {})
 
 
 def item_detail(request, pk):
