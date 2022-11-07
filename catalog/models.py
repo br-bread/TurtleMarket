@@ -1,6 +1,7 @@
-from django.db import models
-
 from core.models import BaseModel
+from django.db import models
+from django.utils.safestring import mark_safe
+from sorl.thumbnail import get_thumbnail
 
 from .validators import amazing_validator
 
@@ -42,6 +43,23 @@ class Item(BaseModel):
                                  on_delete=models.CASCADE,
                                  verbose_name='категория')
     tags = models.ManyToManyField(Tag, verbose_name='тег')
+    upload = models.ImageField('изображение',
+                               upload_to='uploads/%m',
+                               default=None)
+
+    @property
+    def get_img(self):
+        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
+
+    def image_tmb(self):
+        if self.upload:
+            return mark_safe(
+                f'<img src="{self.get_img.url}">'
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = 'превью'
+    image_tmb.allow_tags = True
 
     class Meta:
         verbose_name = 'товар'
@@ -50,3 +68,32 @@ class Item(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Gallery(models.Model):
+    upload = models.ImageField('изображение')
+    item = models.ForeignKey(Item,
+                             on_delete=models.CASCADE,
+                             verbose_name='товар')
+
+    @property
+    def get_img(self):
+        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
+
+    def image_tmb(self):
+        if self.upload:
+            return mark_safe(
+                f'<img src="{self.get_img.url}">'
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = 'изображение'
+    image_tmb.allow_tags = True
+
+    class Meta:
+        verbose_name = 'фото товара'
+        verbose_name_plural = 'фото товара'
+        default_related_name = 'images'
+
+    def __str__(self):
+        return self.upload.url
