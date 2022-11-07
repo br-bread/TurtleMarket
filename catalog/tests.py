@@ -45,7 +45,8 @@ class ModelItemTest(TestCase):
         for i in range(len(item_texts)):
             new_item = Item(name=f'test_item{i}',
                             text=item_texts[i],
-                            category=self.item_category)
+                            category=self.item_category,
+                            upload='../static/img/cat1.png')
             new_item.full_clean()
             new_item.save()
             new_item.tags.add(self.item_tag)
