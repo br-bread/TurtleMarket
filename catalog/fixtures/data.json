@@ -1,132 +1,144 @@
 [
-{
-    "model": "catalog.tag",
-    "pk": 1,
-    "fields": {
+    {
+      "model": "catalog.tag",
+      "pk": 1,
+      "fields": {
         "name": "Плюшевый",
         "is_published": true,
         "slug": "plush"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 2,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.tag",
+      "pk": 2,
+      "fields": {
         "name": "Мягкий",
         "is_published": true,
         "slug": "soft"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 3,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.tag",
+      "pk": 3,
+      "fields": {
         "name": "Милый",
         "is_published": true,
         "slug": "cute"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 4,
-    "fields": {
-        "name": "Зелёный",
-        "is_published": true,
-        "slug": "green"
-    }
-},
-{
-    "model": "catalog.tag",
-    "pk": 5,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.tag",
+      "pk": 4,
+      "fields": {
         "name": "Новый",
         "is_published": true,
         "slug": "new"
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 1,
-    "fields": {
-        "name": "Плюшевые игрушки",
+      }
+    },
+    {
+      "model": "catalog.tag",
+      "pk": 5,
+      "fields": {
+        "name": "Зелёный",
         "is_published": true,
-        "slug": "plush-toys",
-        "weight": 100
-    }
-},
-{
-    "model": "catalog.category",
-    "pk": 2,
-    "fields": {
+        "slug": "green"
+      }
+    },
+    {
+      "model": "catalog.category",
+      "pk": 1,
+      "fields": {
         "name": "Черепашки",
         "is_published": true,
         "slug": "turtles",
         "weight": 100
-    }
-},
-{
-    "model": "catalog.item",
-    "pk": 1,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.category",
+      "pk": 2,
+      "fields": {
+        "name": "Плюшевые игрушки",
+        "is_published": true,
+        "slug": "plush-toys",
+        "weight": 100
+      }
+    },
+    {
+      "model": "catalog.item",
+      "pk": 1,
+      "fields": {
         "is_published": true,
         "name": "Черепашка Пашка",
-        "text": "Превосходно красивый, роскошно игривый",
-        "category": 2,
+        "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"attributes\\\":{\\\"italic\\\":true},\\\"insert\\\":\\\"Превосходно красивый, роскошно игривый\\\"},{\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p><em>Превосходно красивый, роскошно игривый</em></p>\"}",
+        "category": 1,
+        "upload": "uploads/11/turtle_BGMg7QT.png",
         "tags": [
-            4
+          1,
+          3,
+          5
         ]
-    }
-},
-{
-    "model": "catalog.item",
-    "pk": 2,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.item",
+      "pk": 2,
+      "fields": {
         "is_published": true,
         "name": "Мишка Михаил",
-        "text": "Плюшевый медведь. Роскошно пошит.",
-        "category": 1,
+        "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Плюшевый медведь. \\\"},{\\\"attributes\\\":{\\\"bold\\\":true},\\\"insert\\\":\\\"Роскошно\\\"},{\\\"insert\\\":\\\" пошит.\\\\n\\\"}]}\",\"html\":\"<p>Плюшевый медведь. <strong>Роскошно</strong> пошит.</p>\"}",
+        "category": 2,
+        "upload": "uploads/11/507_1.jpg",
         "tags": [
-            1
+          2,
+          4
         ]
-    }
-},
-{
-    "model": "catalog.item",
-    "pk": 3,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.item",
+      "pk": 3,
+      "fields": {
         "is_published": true,
         "name": "Черепашка комик",
-        "text": "Превосходно шутит.\\r\\nКак будут звать черепашку когда она вырастет? Черепавел.",
-        "category": 2,
+        "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Превосходно шутит.\\\\nКак будут звать черепашку когда она вырастет? \\\"},{\\\"attributes\\\":{\\\"italic\\\":true},\\\"insert\\\":\\\"Черепавел\\\"},{\\\"insert\\\":\\\".\\\"},{\\\"attributes\\\":{\\\"blockquote\\\":true},\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p>Превосходно шутит.</p><blockquote>Как будут звать черепашку когда она вырастет? <em>Черепавел</em>.</blockquote>\"}",
+        "category": 1,
+        "upload": "uploads/11/ac3a8643aae0c31f0732316d6909b72d.png",
         "tags": [
-            3
+          2,
+          4
         ]
-    }
-},
-{
-    "model": "catalog.item",
-    "pk": 4,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.item",
+      "pk": 4,
+      "fields": {
         "is_published": true,
         "name": "Лягушка ква",
-        "text": "Роскошно квакает при нажатии на кнопку",
-        "category": 1,
+        "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Роскошно квакает \\\"},{\\\"attributes\\\":{\\\"underline\\\":true},\\\"insert\\\":\\\"при нажатии на кнопку\\\"},{\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p>Роскошно квакает <u>при нажатии на кнопку</u></p>\"}",
+        "category": 2,
+        "upload": "uploads/11/a8a81c5aa7390d6d3e0f0044df390c63.jpg",
         "tags": [
-            5
+          4,
+          5
         ]
-    }
-},
-{
-    "model": "catalog.item",
-    "pk": 5,
-    "fields": {
+      }
+    },
+    {
+      "model": "catalog.item",
+      "pk": 5,
+      "fields": {
         "is_published": true,
         "name": "Динозавр Дино",
-        "text": "Превосходно пахнет.",
-        "category": 1,
+        "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Превосходно пахнет.\\\\n\\\"}]}\",\"html\":\"<p>Превосходно пахнет.</p>\"}",
+        "category": 2,
+        "upload": "uploads/11/41pic8Rkl1L.jpg",
         "tags": [
-            2
+          1,
+          3,
+          5
         ]
+      }
     }
-}
-]
+  ]

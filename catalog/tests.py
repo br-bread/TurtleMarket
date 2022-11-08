@@ -1,3 +1,5 @@
+import json
+
 from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
 
@@ -43,8 +45,13 @@ class ModelItemTest(TestCase):
                       'Не превосходно', 'Потрясающе(превосходно)',
                       'Замечательно! Превосходно!']
         for i in range(len(item_texts)):
+            text_dict = dict()
+            text_dict["delta"] = "{\"ops\":[{\"insert\":\"" + item_texts[i] + \
+                                 "\\n\"}]}"
+            text_dict["html"] = f"<p>{item_texts[i]}</p>"
+            json_text = json.dumps(text_dict)
             new_item = Item(name=f'test_item{i}',
-                            text=item_texts[i],
+                            text=json_text,
                             category=self.item_category,
                             upload='../static/img/cat1.png')
             new_item.full_clean()
@@ -59,9 +66,14 @@ class ModelItemTest(TestCase):
             item_texts = ['Прекрасно', 'пре восход но',
                           '1234', 'Препревосходно123']
             for i in range(len(item_texts)):
+                text_dict = dict()
+                text_dict["delta"] = "{\"ops\":[{\"insert\":\"" + \
+                                     item_texts[i] + "\\n\"}]}"
+                text_dict["html"] = f"<p>{item_texts[i]}</p>"
+                json_text = json.dumps(text_dict)
                 new_item = Item(name='name',
                                 is_published=1,
-                                text=item_texts[i],
+                                text=json_text,
                                 category=self.item_category)
                 new_item.full_clean()
                 new_item.save()

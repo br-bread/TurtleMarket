@@ -1,7 +1,9 @@
-from core.models import BaseModel
 from django.db import models
 from django.utils.safestring import mark_safe
+from django_quill.fields import QuillField
 from sorl.thumbnail import get_thumbnail
+
+from core.models import BaseModel
 
 from .validators import amazing_validator
 
@@ -35,7 +37,7 @@ class Item(BaseModel):
                             max_length=150,
                             help_text='Максимальная длина - 150 символов',
                             unique=False)
-    text = models.TextField(
+    text = QuillField(
         'описание',
         validators=[amazing_validator('превосходно', 'роскошно')],
         help_text='Не забудьте указать роскошные и превосходные стороны')
