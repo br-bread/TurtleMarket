@@ -16,4 +16,4 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('image_tmb',)
+    list_display = ('image_tmb', 'item')
