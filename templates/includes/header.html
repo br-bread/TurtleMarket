@@ -1,29 +1,29 @@
 <header>
-    <div class="container">
+  <div class="container">
     <div class="row align-items-center">
-        {% with request.resolver_match.view_name as name%}   
-        <div class="col-1 menu">
-            {% if name != 'homepage:home' %}
-            <p class="text-white text-center"><a href="{% url "homepage:home" %}">Главная</a></p>
-            {% else %}
-            <b><p class="text-white text-center"><a href="{% url "homepage:home" %}">Главная</a></p></b>
-            {% endif %}
-        </div> 
-        <div class="col-1 menu">
-            {% if name != 'about:description' %}
-            <p class="text-white text-center"><a href="{% url "about:description" %}">Описание</a></p>
-            {% else %}
-            <b><p class="text-white text-center"><a href="{% url "about:description" %}">Описание</a></p></b>
-            {% endif %}
-        </div> 
-        <div class="col-1 menu">
-            {% if name != 'catalog:item_list' %}
-            <p class="text-white text-center"><a href="{% url "catalog:item_list" %}">Каталог</a></p>
-            {% else %}
-            <b><p class="text-white text-center"><a href="{% url "catalog:item_list" %}">Каталог</a></p></b>
-            {% endif %}
-        </div> 
-        {% endwith %}
+      {% with request.resolver_match.view_name as name%}   
+      <div class="col-1 menu">
+        {% if name != 'homepage:home' %}
+        <p class="text-white text-center"><a href="{% url "homepage:home" %}">Главная</a></p>
+        {% else %}
+        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "homepage:home" %}">Главная</a></p>
+        {% endif %}
+      </div>
+      <div class="col-1 menu">
+        {% if name != 'about:description' %}
+        <p class="text-white text-center"><a href="{% url "about:description" %}">Описание</a></p>
+        {% else %}
+        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "about:description" %}">Описание</a></p>
+        {% endif %}
+      </div>
+      <div class="col-1 menu">
+        {% if name != 'catalog:item_list' %}
+        <p class="text-white text-center"><a href="{% url "catalog:item_list" %}">Каталог</a></p>
+        {% else %}
+        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "catalog:item_list" %}">Каталог</a></p>
+        {% endif %}
+      </div>
+      {% endwith %}
     </div>
-    </div>
+  </div>
 </header>

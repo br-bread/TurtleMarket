@@ -1,13 +1,11 @@
 {% load static %}
-
 <footer>
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <img src='{% static 'img/cat1.png' %}' width='60%'>
-        </div>
-        <div class="col-4">
-            <img src='{% static 'img/cat2.png' %}' width='60%'>
-        </div>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <img class="footerImg" src='{% static 'img/cat1.png' %}' alt="котик1">
     </div>
-    
+    <div class="col-4">
+      <img class="footerImg" src='{% static 'img/cat2.png' %}' alt="котик2">
+    </div>
+  </div>
 </footer>

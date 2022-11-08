@@ -26,3 +26,7 @@ footer {
 .colorText {
     color: var(--color_dark);
 }
+
+.footerImg {
+    width: 60%;
+  }
