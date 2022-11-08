@@ -29,4 +29,9 @@ footer {
 
 .footerImg {
     width: 60%;
-  }
+}
+
+.active{
+    pointer-events: none;
+    font-weight: bold;
+}

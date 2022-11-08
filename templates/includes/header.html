@@ -1,27 +1,23 @@
+{% load static %}
 <header>
   <div class="container">
     <div class="row align-items-center">
       {% with request.resolver_match.view_name as name%}   
-      <div class="col-1 menu">
-        {% if name != 'homepage:home' %}
-        <p class="text-white text-center"><a href="{% url "homepage:home" %}">Главная</a></p>
-        {% else %}
-        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "homepage:home" %}">Главная</a></p>
-        {% endif %}
+      <div class="col-1">
+        <img src='{% static 'img/turtle.png' %}' alt="черепашка" style="width:70%">
       </div>
-      <div class="col-1 menu">
-        {% if name != 'about:description' %}
-        <p class="text-white text-center"><a href="{% url "about:description" %}">Описание</a></p>
-        {% else %}
-        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "about:description" %}">Описание</a></p>
-        {% endif %}
+      <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'homepage:home' %}" {% if name == 'homepage:home' %} 
+          class='active'{% endif %}>На главную</a>
+        </p>
       </div>
-      <div class="col-1 menu">
-        {% if name != 'catalog:item_list' %}
-        <p class="text-white text-center"><a href="{% url "catalog:item_list" %}">Каталог</a></p>
-        {% else %}
-        <p class="text-white text-center" style="font-weight:bold"><a href="{% url "catalog:item_list" %}">Каталог</a></p>
-        {% endif %}
+      <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
+          class='active'{% endif %}>О проекте</a></p>
+      </div>
+      <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'catalog:item_list' %}" {% if name == 'catalog:item_list' %} 
+          class='active'{% endif %}>Список товаров</a></p>
       </div>
       {% endwith %}
     </div>
