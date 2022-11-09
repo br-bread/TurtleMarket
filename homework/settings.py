@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
 from django_cleanup.signals import cleanup_pre_delete
+from dotenv import load_dotenv
 from sorl.thumbnail import delete
 
 BASE_DIR = Path(__file__).resolve().parent.parent
