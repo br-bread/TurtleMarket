@@ -52,8 +52,7 @@ class ModelItemTest(TestCase):
             json_text = json.dumps(text_dict)
             new_item = Item(name=f'test_item{i}',
                             text=json_text,
-                            category=self.item_category,
-                            upload='../static/img/cat1.png')
+                            category=self.item_category)
             new_item.full_clean()
             new_item.save()
             new_item.tags.add(self.item_tag)

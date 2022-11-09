@@ -1,9 +1,9 @@
+from django.contrib import admin
 from django.db import models
 from django.utils.safestring import mark_safe
 from django_quill.fields import QuillField
-from sorl.thumbnail import get_thumbnail
 
-from core.models import BaseModel
+from core.models import BaseImageModel, BaseModel
 
 from .validators import amazing_validator
 
@@ -45,13 +45,20 @@ class Item(BaseModel):
                                  on_delete=models.CASCADE,
                                  verbose_name='категория')
     tags = models.ManyToManyField(Tag, verbose_name='тег')
-    upload = models.ImageField('изображение',
-                               upload_to='uploads/%m',
-                               default=None)
 
-    @property
-    def get_img(self):
-        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
+    class Meta:
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
+        default_related_name = 'items'
+
+    def __str__(self):
+        return self.name
+
+
+class Preview(BaseImageModel):
+    item = models.OneToOneField(Item,
+                                on_delete=models.CASCADE,
+                                verbose_name='товар')
 
     def image_tmb(self):
         if self.upload:
@@ -64,23 +71,17 @@ class Item(BaseModel):
     image_tmb.allow_tags = True
 
     class Meta:
-        verbose_name = 'товар'
-        verbose_name_plural = 'товары'
-        default_related_name = 'items'
+        verbose_name = 'превью товара'
+        verbose_name_plural = 'превью товара'
 
     def __str__(self):
-        return self.name
+        return self.upload.url
 
 
-class Gallery(models.Model):
-    upload = models.ImageField('изображение')
+class Gallery(BaseImageModel):
     item = models.ForeignKey(Item,
                              on_delete=models.CASCADE,
                              verbose_name='товар')
-
-    @property
-    def get_img(self):
-        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
 
     def image_tmb(self):
         if self.upload:
@@ -95,7 +96,6 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = 'фото товара'
         verbose_name_plural = 'фото товара'
-        default_related_name = 'images'
 
     def __str__(self):
         return self.upload.url
