@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 
 
