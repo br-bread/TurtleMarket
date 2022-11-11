@@ -8,6 +8,9 @@ admin.site.register(Tag)
 
 class PreviewImage(admin.TabularInline):
     model = Preview
+    extra = 0
+    readonly_fields = ('image_tmb',)
+    fields = ('upload', 'image_tmb',)
 
 
 class GalleryImage(admin.TabularInline):
@@ -20,7 +23,7 @@ class ItemAdmin(admin.ModelAdmin):
         PreviewImage,
         GalleryImage,
     ]
-    list_display = ('name', 'is_published')
+    list_display = ('name', 'category', 'is_published')
     list_editable = ('is_published',)
     list_display_links = ('name',)
     filter_horizontal = ('tags',)
@@ -28,11 +31,13 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Preview)
 class PreviewAdmin(admin.ModelAdmin):
-    list_display = ('image_tmb', 'item')
+    list_display = ('item', 'image_tmb', 'upload',)
+    list_editable = ('upload',)
     list_display_links = ('image_tmb',)
 
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('image_tmb', 'item')
+    list_display = ('item', 'image_tmb', 'upload',)
+    list_editable = ('upload',)
     list_display_links = ('image_tmb',)

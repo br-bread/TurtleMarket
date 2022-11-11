@@ -46,6 +46,16 @@ class Item(BaseModel):
                                  verbose_name='категория')
     tags = models.ManyToManyField(Tag, verbose_name='тег')
 
+    def image_tmb(self):
+        if self.upload:
+            return mark_safe(
+                f'<img src="{self.get_img_50x50.url}">'
+            )
+        return "Нет изображения"
+
+    image_tmb.short_description = 'превью'
+    image_tmb.allow_tags = True
+
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
@@ -63,7 +73,7 @@ class Preview(BaseImageModel):
     def image_tmb(self):
         if self.upload:
             return mark_safe(
-                f'<img src="{self.get_img.url}">'
+                f'<img src="{self.get_img_300x300.url}">'
             )
         return "Нет изображения"
 
@@ -86,7 +96,7 @@ class Gallery(BaseImageModel):
     def image_tmb(self):
         if self.upload:
             return mark_safe(
-                f'<img src="{self.get_img.url}">'
+                f'<img src="{self.get_img_300x300.url}">'
             )
         return "Нет изображения"
 
