@@ -47,12 +47,11 @@ class Item(BaseModel):
     tags = models.ManyToManyField(Tag, verbose_name='тег')
 
     def image_tmb(self):
-        if self.upload:
+        if self.main_image.upload:
             return mark_safe(
-                f'<img src="{self.get_img_50x50.url}">'
+                f'<img src="{self.main_image.get_img_50x50.url}">'
             )
         return "Нет изображения"
-
     image_tmb.short_description = 'превью'
     image_tmb.allow_tags = True
 
@@ -65,47 +64,33 @@ class Item(BaseModel):
         return self.name
 
 
-class Preview(BaseImageModel):
+class MainImage(BaseImageModel):
     item = models.OneToOneField(Item,
                                 on_delete=models.CASCADE,
-                                verbose_name='товар')
+                                verbose_name='товар',
+                                related_name='main_image')
 
     def image_tmb(self):
-        if self.upload:
-            return mark_safe(
-                f'<img src="{self.get_img_300x300.url}">'
-            )
-        return "Нет изображения"
+        return super().image_tmb()
 
     image_tmb.short_description = 'превью'
-    image_tmb.allow_tags = True
 
     class Meta:
         verbose_name = 'превью товара'
         verbose_name_plural = 'превью товара'
 
-    def __str__(self):
-        return self.upload.url
 
-
-class Gallery(BaseImageModel):
+class GalleryImage(BaseImageModel):
     item = models.ForeignKey(Item,
                              on_delete=models.CASCADE,
-                             verbose_name='товар')
+                             verbose_name='товар',
+                             related_name='gallery_images')
 
     def image_tmb(self):
-        if self.upload:
-            return mark_safe(
-                f'<img src="{self.get_img_300x300.url}">'
-            )
-        return "Нет изображения"
+        return super().image_tmb()
 
     image_tmb.short_description = 'изображение'
-    image_tmb.allow_tags = True
 
     class Meta:
         verbose_name = 'фото товара'
         verbose_name_plural = 'фото товара'
-
-    def __str__(self):
-        return self.upload.url

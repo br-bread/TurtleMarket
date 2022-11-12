@@ -28,7 +28,16 @@ class BaseImageModel(models.Model):
         return get_thumbnail(self.upload, '50x50', crop='center', quality=51)
 
     def image_tmb(self):
-        pass
+        if self.upload:
+            return mark_safe(
+                f'<img src="{self.get_img_300x300.url}">'
+            )
+        return "Нет изображения"
+
+    image_tmb.allow_tags = True
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.upload.url
