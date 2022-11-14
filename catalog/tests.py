@@ -12,12 +12,15 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_correct_catalog_url(self):
-        tests = ['1/', '123/']
+        tests = [{'url': '1/', 'expected_response': 404},
+                 {'url': '123/', 'expected_response': 404}]
 
         for i in range(len(tests)):
-            response = Client().get('/catalog/' + tests[i])
-            with self.subTest(f'{tests[i][:-1]} is a positive integer', i=i):
-                self.assertEqual(response.status_code, 200)
+            response = Client().get('/catalog/' + tests[i]['url'])
+            with self.subTest(f'{tests[i]["url"][:-1]}'
+                              ' is a positive integer', i=i):
+                self.assertEqual(response.status_code,
+                                 tests[i]['expected_response'])
 
     def test_wrong_catalog_url(self):
         tests = ['0', '-1', '0123', 'a', '1a', '1a2', 'a1',

@@ -70,6 +70,7 @@
     "fields": {
         "is_published": true,
         "name": "Черепашка Пашка",
+        "is_on_main": true,
         "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"attributes\\\":{\\\"italic\\\":true},\\\"insert\\\":\\\"Превосходно красивый, роскошно игривый\\\"},{\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p><em>Превосходно красивый, роскошно игривый</em></p>\"}",
         "category": 2,
         "tags": [
@@ -83,6 +84,7 @@
     "fields": {
         "is_published": true,
         "name": "Мишка Михаил",
+        "is_on_main": false,
         "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Плюшевый медведь. \\\"},{\\\"attributes\\\":{\\\"bold\\\":true},\\\"insert\\\":\\\"Роскошно\\\"},{\\\"insert\\\":\\\" пошит.\\\\n\\\"}]}\",\"html\":\"<p>Плюшевый медведь. <strong>Роскошно</strong> пошит.</p>\"}",
         "category": 1,
         "tags": [
@@ -96,6 +98,7 @@
     "fields": {
         "is_published": true,
         "name": "Черепашка комик",
+        "is_on_main": true,
         "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Превосходно шутит.\\\\nКак будут звать черепашку когда она вырастет? \\\"},{\\\"attributes\\\":{\\\"italic\\\":true},\\\"insert\\\":\\\"Черепавел\\\"},{\\\"insert\\\":\\\".\\\"},{\\\"attributes\\\":{\\\"blockquote\\\":true},\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p>Превосходно шутит.</p><blockquote>Как будут звать черепашку когда она вырастет? <em>Черепавел</em>.</blockquote>\"}",
         "category": 2,
         "tags": [
@@ -109,6 +112,7 @@
     "fields": {
         "is_published": true,
         "name": "Лягушка ква",
+        "is_on_main": false,
         "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Роскошно квакает \\\"},{\\\"attributes\\\":{\\\"underline\\\":true},\\\"insert\\\":\\\"при нажатии на кнопку\\\"},{\\\"insert\\\":\\\"\\\\n\\\"}]}\",\"html\":\"<p>Роскошно квакает <u>при нажатии на кнопку</u></p>\"}",
         "category": 1,
         "tags": [
@@ -122,6 +126,7 @@
     "fields": {
         "is_published": true,
         "name": "Динозавр Дино",
+        "is_on_main": false,
         "text": "{\"delta\":\"{\\\"ops\\\":[{\\\"insert\\\":\\\"Превосходно пахнет.\\\\n\\\"}]}\",\"html\":\"<p>Превосходно пахнет.</p>\"}",
         "category": 1,
         "tags": [

@@ -37,6 +37,10 @@ class Item(BaseModel):
                             max_length=150,
                             help_text='Максимальная длина - 150 символов',
                             unique=False)
+    is_on_main = models.BooleanField('На главной',
+                                     default=False,
+                                     help_text='Отображается ли в списке '
+                                     'товаров на главной странице',)
     text = QuillField(
         'описание',
         validators=[amazing_validator('превосходно', 'роскошно')],
