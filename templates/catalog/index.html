@@ -4,8 +4,26 @@
 {% block content %} 
 <div class="row">
   <div class="col-12">
-    <h3 class="text-center colorText">(〜￣▽￣)〜 Список товаров 〜(￣▽￣〜)</h3>
+    <h2 class="text-center colorText">(〜￣▽￣)〜 Список товаров 〜(￣▽￣〜)</h2>
   </div>
 </div>
-{% include "includes/items.html" %}
+<div class="row">
+  <div class="col-12">
+    <h3 class="text-center colorText"></h3>
+  </div>
+</div>
+{% for item in items %}
+  <div class="colorText text-center">
+      {% ifchanged %}
+        <h3 style="text-decoration:underline">{{item.category}}</h3>
+      {% endifchanged %}
+      {% include "includes/item.html" %}
+  </div>
+  {% empty %}
+  <div class="row align-items-center">
+    <div class="col-12 colorText">
+      <h4>Каталог пуст</h3>
+    </div>
+  </div>
+{% endfor %}
 {% endblock %}

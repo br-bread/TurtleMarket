@@ -101,6 +101,7 @@ class TaskPagesTest(TestCase):
         self.assertEqual(len(response.context['items']), Item.objects.count())
         self.assertIn('texts', response.context)
         self.assertEqual(len(response.context['texts']), Item.objects.count())
+        self.assertIn('is_item_list', response.context)
 
     def test_catalog_itemlist_show_correct_context(self):
         response = Client().get(reverse('catalog:item_list'))
@@ -108,6 +109,7 @@ class TaskPagesTest(TestCase):
         self.assertEqual(len(response.context['items']), Item.objects.count())
         self.assertIn('texts', response.context)
         self.assertEqual(len(response.context['texts']), Item.objects.count())
+        self.assertIn('is_item_list', response.context)
 
 
 '''

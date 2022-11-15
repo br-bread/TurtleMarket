@@ -1,7 +1,8 @@
-{% for item in items %}
   <div class="colorText text-center">
     <h4>{{item.name}}</h4>
-    <h5>{{item.category}}</h5>
+    {% if is_item_list == False %}
+      <h5>{{item.category}}</h5>
+    {% endif %}
     <h6>Теги:
     {% for tag in item.tags.all %}
        {{tag.name}} 
@@ -14,10 +15,3 @@
       {% endif %}
     {% endfor %}
   </div>
-  {% empty %}
-    <div class="row align-items-center">
-      <div class="col-12 colorText">
-        <h4>Каталог пуст</h3>
-      </div>
-    </div>
-{% endfor %}

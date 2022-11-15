@@ -11,12 +11,14 @@ def item_list(request):
                  .select_related('category')
                  .prefetch_related('tags')
                  .filter(is_published=True)
+                 .filter(category__is_published=True)
                  .order_by('category__name')
                  .only('name', 'text', 'category__name'))
     texts = [json.loads(item.text.json_string)['html'] for item in items]
     context = {
         'items': items,
         'texts': texts,
+        'is_item_list': True,
     }
     return render(request, template_name, context)
 

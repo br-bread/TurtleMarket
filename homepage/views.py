@@ -10,12 +10,14 @@ def home(request):
     items = (Item.objects
                  .select_related('category')
                  .prefetch_related('tags')
-                 .filter(is_published=True)
+                 .filter(is_published=True, is_on_main=True)
+                 .filter(category__is_published=True)
                  .order_by('name')
                  .only('name', 'text', 'category__name'))
     texts = [json.loads(item.text.json_string)['html'] for item in items]
     context = {
         'items': items,
         'texts': texts,
+        'is_item_list': False,
     }
     return render(request, template_name, context)
