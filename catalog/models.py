@@ -32,7 +32,21 @@ class Category(BaseModel):
         return self.name
 
 
+class ItemManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+            .select_related('category')
+            .prefetch_related('tags')
+            .filter(is_published=True)
+            .filter(category__is_published=True)
+            .order_by('name')
+            .only('name', 'text', 'category__name')
+        )
+
+
 class Item(BaseModel):
+    objects = ItemManager()
     name = models.CharField('название',
                             max_length=150,
                             help_text='Максимальная длина - 150 символов',

@@ -7,13 +7,7 @@ from catalog.models import Item
 
 def home(request):
     template_name = 'homepage/index.html'
-    items = (Item.objects
-                 .select_related('category')
-                 .prefetch_related('tags')
-                 .filter(is_published=True, is_on_main=True)
-                 .filter(category__is_published=True)
-                 .order_by('name')
-                 .only('name', 'text', 'category__name'))
+    items = Item.objects.published().filter(is_on_main=True)
     texts = [json.loads(item.text.json_string)['html'] for item in items]
     context = {
         'items': items,
