@@ -14,7 +14,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='dummykey')
 
 DEBUG = os.getenv('DEBUG', default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = [
     '127.0.0.1',
