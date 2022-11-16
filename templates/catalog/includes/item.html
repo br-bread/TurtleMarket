@@ -1,7 +1,6 @@
 <div class="card" style="width: 18rem;">
-  {% if preview != None %}
-    {{preview}}
-  {% elif item.image_tmb != None %}
+  {% with request.resolver_match.view_name as view_name %}
+  {% if item.image_tmb != None %}
       {{item.image_tmb}}
   {% else %}
       <h6 class="text-center colorText" style="font-style:italic">(Изображение отсутствует)</h6>
@@ -9,7 +8,7 @@
   <div class="card-body">
     <h4 class="card-title">{{item.name}}</h4>
     <p class="card-text">
-      {% if is_item_list == False %}
+      {% if view_name != 'catalog:item_list' %}
       <h5>{{item.category}}</h5>
     {% endif %}
     <h6>Теги:
@@ -17,18 +16,15 @@
         {{tag.name}} 
     {% endfor %}
     </h6>
-    {% if is_item_detail == True%}
-      {{text|safe}}
+    {% if view_name == 'catalog:item_detail' %}
+    {{ item.text.html|safe }}
     {% else %}
-      {% for text in texts %}
-        {% if forloop.counter == forloop.parentloop.counter %}
-          {{text|truncatewords:10|safe}}
-        {% endif %}
-      {% endfor %}
+      {{ item.text.html|truncatewords:10|safe }}
     {% endif %}
     </p>
-    {% if is_item_detail == False %}
+    {% if view_name != 'catalog:item_detail' %}
       <a href="{% url 'catalog:item_detail' pk=item.id %}" class="btn btn-primary colorLight">Перейти к товару</a>
     {% endif %}
   </div>
+  {% endwith %} 
 </div>

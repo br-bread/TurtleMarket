@@ -99,19 +99,11 @@ class TaskPagesTest(TestCase):
         response = Client().get(reverse('homepage:home'))
         self.assertIn('items', response.context)
         self.assertEqual(len(response.context['items']), Item.objects.count())
-        self.assertIn('texts', response.context)
-        self.assertEqual(len(response.context['texts']), Item.objects.count())
-        self.assertIn('is_item_list', response.context)
-        self.assertIn('is_item_detail', response.context)
 
     def test_catalog_itemlist_show_correct_context(self):
         response = Client().get(reverse('catalog:item_list'))
         self.assertIn('items', response.context)
         self.assertEqual(len(response.context['items']), Item.objects.count())
-        self.assertIn('texts', response.context)
-        self.assertEqual(len(response.context['texts']), Item.objects.count())
-        self.assertIn('is_item_list', response.context)
-        self.assertIn('is_item_detail', response.context)
 
     def test_catalog_item_detail_show_correct_context(self):
         text_dict = dict()
@@ -128,7 +120,3 @@ class TaskPagesTest(TestCase):
         response = Client().get(reverse('catalog:item_detail',
                                         kwargs={'pk': 1}))
         self.assertIn('item', response.context)
-        self.assertIn('preview', response.context)
-        self.assertIn('text', response.context)
-        self.assertIn('is_item_detail', response.context)
-        self.assertIn('is_item_list', response.context)
