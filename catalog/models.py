@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.db import models
+from django.db.models import Prefetch
 from django.utils.safestring import mark_safe
 from django_quill.fields import QuillField
-from django.db.models import Prefetch
 
 from core.models import BaseImageModel, BaseModel
 

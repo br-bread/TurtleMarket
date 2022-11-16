@@ -21,7 +21,6 @@
     {% else %}
       {{ item.text.html|truncatewords:10|safe }}
     {% endif %}
-    </p>
     {% if view_name != 'catalog:item_detail' %}
       <a href="{% url 'catalog:item_detail' pk=item.id %}" class="btn btn-primary colorLight">Перейти к товару</a>
     {% endif %}
