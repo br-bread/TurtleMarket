@@ -102,6 +102,7 @@ class TaskPagesTest(TestCase):
         self.assertIn('texts', response.context)
         self.assertEqual(len(response.context['texts']), Item.objects.count())
         self.assertIn('is_item_list', response.context)
+        self.assertIn('is_item_detail', response.context)
 
     def test_catalog_itemlist_show_correct_context(self):
         response = Client().get(reverse('catalog:item_list'))
@@ -110,11 +111,8 @@ class TaskPagesTest(TestCase):
         self.assertIn('texts', response.context)
         self.assertEqual(len(response.context['texts']), Item.objects.count())
         self.assertIn('is_item_list', response.context)
+        self.assertIn('is_item_detail', response.context)
 
-
-'''
-    Я не понимаю почему, но оно не работает
-    Помотрите, пожалуйста
     def test_catalog_item_detail_show_correct_context(self):
         text_dict = dict()
         text_dict["delta"] = "{\"ops\":[{\"insert\":\"" + \
@@ -132,4 +130,5 @@ class TaskPagesTest(TestCase):
         self.assertIn('item', response.context)
         self.assertIn('preview', response.context)
         self.assertIn('text', response.context)
-'''
+        self.assertIn('is_item_detail', response.context)
+        self.assertIn('is_item_list', response.context)

@@ -12,12 +12,12 @@
         </p>
       </div>
       <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
-          class='active'{% endif %}>О проекте</a></p>
-      </div>
-      <div class="col-2 menu">
         <p class="text-center"><a href="{% url 'catalog:item_list' %}" {% if name == 'catalog:item_list' %} 
           class='active'{% endif %}>Список товаров</a></p>
+      </div>
+      <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
+          class='active'{% endif %}>О проекте</a></p>
       </div>
       {% endwith %}
     </div>

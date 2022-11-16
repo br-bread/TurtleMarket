@@ -13,5 +13,6 @@ def home(request):
         'items': items,
         'texts': texts,
         'is_item_list': False,
+        'is_item_detail': False,
     }
     return render(request, template_name, context)

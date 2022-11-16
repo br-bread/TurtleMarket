@@ -12,6 +12,7 @@ def item_list(request):
         'items': items,
         'texts': texts,
         'is_item_list': True,
+        'is_item_detail': False,
     }
     return render(request, template_name, context)
 
@@ -28,6 +29,8 @@ def item_detail(request, pk):
         'item': item,
         'preview': preview,
         'text': text,
+        'is_item_list': False,
+        'is_item_detail': True,
     }
     return render(request, template_name, context)
 

@@ -3,15 +3,19 @@
 {% block title %} Главная {% endblock %}
 {% block content %} 
 
-{% for item in items %}
-  {% include "includes/item.html" %}
-  {% empty %}
+<div class="container">
   <div class="row align-items-center">
-    <div class="col-12 colorText">
-      <h4>Каталог пуст</h3>
-    </div>
+    {% for item in items %}
+      <div class="col-4 colorText align-items-center">
+        {% include "catalog/includes/item.html" %}
+      </div>
+    {% empty %}
+      <div class="col-12 colorText">
+        <h4>Каталог пуст</h3>
+      </div>
+    {% endfor %}
   </div>
-{% endfor %}
+</div>
 <div class="row align-items-center">
   <div class="col-3">
   </div>

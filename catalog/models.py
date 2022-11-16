@@ -67,7 +67,7 @@ class Item(BaseModel):
     def image_tmb(self):
         if self.main_image.upload:
             return mark_safe(
-                f'<img src="{self.main_image.get_img_50x50.url}">'
+                f'<img src="{self.main_image.get_img_300x300.url}">'
             )
         return "Нет изображения"
     image_tmb.short_description = 'превью'
