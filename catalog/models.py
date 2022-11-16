@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.db import models
 from django.utils.safestring import mark_safe
 from django_quill.fields import QuillField
+from django.db.models import Prefetch
 
 from core.models import BaseImageModel, BaseModel
 
@@ -37,9 +38,10 @@ class ItemManager(models.Manager):
         return (
             self.get_queryset()
             .select_related('category')
-            .prefetch_related('tags')
-            .filter(is_published=True)
-            .filter(category__is_published=True)
+            .prefetch_related(Prefetch('tags',
+                              queryset=Tag.objects.filter(is_published=True)
+                                                  .only('name')))
+            .filter(is_published=True, category__is_published=True)
             .order_by('name')
             .only('name', 'text', 'category__name')
         )

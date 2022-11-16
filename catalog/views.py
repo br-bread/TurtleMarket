@@ -19,7 +19,11 @@ def item_list(request):
 
 def item_detail(request, pk):
     template_name = 'catalog/detail.html'
-    item = get_object_or_404(Item, pk=pk)
+    item = get_object_or_404(
+        Item.objects.filter(is_published=True,
+                            category__is_published=True),
+        pk=pk
+    )
     try:
         preview = MainImage.objects.get(item=pk).image_tmb
     except Exception:
