@@ -3,7 +3,7 @@ import json
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from models import Category, Item, Tag
+from catalog.models import Category, Item, Tag
 
 
 class ModelItemTest(TestCase):

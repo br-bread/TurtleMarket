@@ -3,7 +3,7 @@ import json
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from models import Category, Item, Tag
+from catalog.models import Category, Item, Tag
 
 
 class TaskPagesTest(TestCase):
