@@ -16,11 +16,6 @@ class TaskPagesTest(TestCase):
         cls.item_tag = Tag.objects.create(name='test_tag',
                                           slug='test_tag_slug')
 
-    def test_homepage_show_correct_context(self):
-        response = Client().get(reverse('homepage:home'))
-        self.assertIn('items', response.context)
-        self.assertEqual(len(response.context['items']), Item.objects.count())
-
     def test_catalog_itemlist_show_correct_context(self):
         response = Client().get(reverse('catalog:item_list'))
         self.assertIn('items', response.context)
@@ -28,9 +23,8 @@ class TaskPagesTest(TestCase):
 
     def test_catalog_item_detail_show_correct_context(self):
         text_dict = dict()
-        text_dict["delta"] = "{\"ops\":[{\"insert\":\"" + \
-                             'роскошно' + "\\n\"}]}"
-        text_dict["html"] = "<p>роскошно</p>"
+        text_dict['delta'] = ''
+        text_dict['html'] = '<p>роскошно</p>'
         json_text = json.dumps(text_dict)
         new_item = Item(name='test_item1',
                         text=json_text,

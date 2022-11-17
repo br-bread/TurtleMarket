@@ -23,9 +23,8 @@ class ModelItemTest(TestCase):
                       'Замечательно! Превосходно!']
         for i in range(len(item_texts)):
             text_dict = dict()
-            text_dict["delta"] = ("{\"ops\":[{\"insert\":\""
-                                  "" + item_texts[i] + "\\n\"}]}")
-            text_dict["html"] = f"<p>{item_texts[i]}</p>"
+            text_dict['delta'] = ''
+            text_dict['html'] = f'<p>{item_texts[i]}</p>'
             json_text = json.dumps(text_dict)
             new_item = Item(name=f'test_item{i}',
                             text=json_text,
@@ -43,9 +42,8 @@ class ModelItemTest(TestCase):
                           '1234', 'Препревосходно123']
             for i in range(len(item_texts)):
                 text_dict = dict()
-                text_dict["delta"] = ("{\"ops\":[{\"insert\":\""
-                                      "" + item_texts[i] + "\\n\"}]}")
-                text_dict["html"] = f"<p>{item_texts[i]}</p>"
+                text_dict['delta'] = ''
+                text_dict['html'] = f'<p>{item_texts[i]}</p>'
                 json_text = json.dumps(text_dict)
                 new_item = Item(name='name',
                                 is_published=1,
