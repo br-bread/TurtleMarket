@@ -1,7 +1,7 @@
 <div class="card" style="width: 18rem;">
   {% with request.resolver_match.view_name as view_name %}
-  {% if item.image_tmb != None %}
-      {{item.image_tmb}}
+  {% if item.main_image != None %}
+      {{item.main_image.image_tmb}}
   {% else %}
       <h6 class="text-center colorText" style="font-style:italic">(Изображение отсутствует)</h6>
   {% endif %}

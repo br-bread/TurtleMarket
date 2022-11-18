@@ -38,6 +38,7 @@ class ItemManager(models.Manager):
         return (
             self.get_queryset()
             .select_related('category')
+            .select_related('main_image')
             .prefetch_related(Prefetch('tags',
                               queryset=Tag.objects.filter(is_published=True)
                                                   .only('name')))
