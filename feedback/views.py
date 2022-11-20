@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.shortcuts import redirect, render
+
 from . import forms
 
 
