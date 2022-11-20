@@ -6,7 +6,6 @@ from catalog.models import Item, MainImage
 def item_list(request):
     template_name = 'catalog/index.html'
     items = Item.objects.published().order_by('category__name')
-    print(items)
     context = {
         'items': items,
     }

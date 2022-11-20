@@ -3,6 +3,13 @@ from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 
 
+class SluggedModel(models.Model):
+    slug = models.SlugField(max_length=200, help_text='Максимум 200 символов')
+
+    class Meta:
+        abstract = True
+
+
 class BaseModel(models.Model):
     name = models.CharField('название',
                             max_length=150,
@@ -12,6 +19,9 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.name
 
 
 class BaseImageModel(models.Model):

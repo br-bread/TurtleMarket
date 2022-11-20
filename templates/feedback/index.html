@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Отзыв {% endblock %}
+{% block content %} 
+
+<form method='post'>
+  {% csrf_token %}
+  <ul>
+    {{form}}
+    <input type='submit' value='Отправить'>
+  </ul>
+</form>
+
+{% endblock %}

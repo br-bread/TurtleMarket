@@ -16,6 +16,10 @@
           class='active'{% endif %}>Список товаров</a></p>
       </div>
       <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'feedback:feedback' %}" {% if name == 'feedback:feedback' %} 
+          class='active'{% endif %}>Оставить отзыв</a></p>
+      </div>
+      <div class="col-2 menu">
         <p class="text-center"><a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
           class='active'{% endif %}>О проекте</a></p>
       </div>
