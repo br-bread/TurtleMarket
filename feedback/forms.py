@@ -8,8 +8,9 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         fields = (Feedback.text.field.name,)
         labels = {
-            Feedback.text.field.name: 'текст',
+            Feedback.text.field.name: 'Отзыв',
         }
-        help_texts = {
-            Feedback.text.field.name: 'алё',
+        widgets = {
+            Feedback.text.field.name: forms.TextInput(
+                attrs={'class': 'form-control'}),
         }
