@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
 from . import forms
+from .models import Feedback
 
 
 def feedback(request):
@@ -12,7 +13,8 @@ def feedback(request):
     }
 
     if request.method == 'POST' and form.is_valid():
-        form.cleaned_data['text']
+        feedback = Feedback(text=form.cleaned_data['text'])
+        feedback.save()
         send_mail(
             'Благодарим за отзыв!',
             ('Здравствуйте! Спасибо за отзыв о плюшевых черепашках,'
