@@ -1,8 +1,10 @@
 <div class="card" style="width: 18rem;">
   {% with request.resolver_match.view_name as view_name %}
-  {% if item.main_image != None %}
+  {% if item.main_image %}
       {{item.main_image.image_tmb}}
   {% else %}
+      {% load static %}
+      <img src="{% static 'img/turtle.png' %}" alt="черепашка">
       <h6 class="text-center colorText" style="font-style:italic">(Изображение отсутствует)</h6>
   {% endif %}
   <div class="card-body">
