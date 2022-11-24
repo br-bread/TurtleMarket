@@ -29,6 +29,12 @@ class BaseImageModel(models.Model):
                                upload_to='uploads/',
                                null=True)
 
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.upload.url
+
     @property
     def get_img_300x300(self):
         return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
@@ -45,9 +51,3 @@ class BaseImageModel(models.Model):
         return "Нет изображения"
 
     image_tmb.allow_tags = True
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.upload.url

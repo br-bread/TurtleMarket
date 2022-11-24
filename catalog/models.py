@@ -58,6 +58,11 @@ class Item(BaseModel):
                                  verbose_name='категория')
     tags = models.ManyToManyField(Tag, verbose_name='тег')
 
+    class Meta:
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
+        default_related_name = 'items'
+
     def image_tmb(self):
         if self.main_image.upload:
             return mark_safe(
@@ -67,11 +72,6 @@ class Item(BaseModel):
     image_tmb.short_description = 'превью'
     image_tmb.allow_tags = True
 
-    class Meta:
-        verbose_name = 'товар'
-        verbose_name_plural = 'товары'
-        default_related_name = 'items'
-
 
 class MainImage(BaseImageModel):
     item = models.OneToOneField(Item,
@@ -79,14 +79,14 @@ class MainImage(BaseImageModel):
                                 verbose_name='товар',
                                 related_name='main_image')
 
+    class Meta:
+        verbose_name = 'превью товара'
+        verbose_name_plural = 'превью товара'
+
     def image_tmb(self):
         return super().image_tmb()
 
     image_tmb.short_description = 'превью'
-
-    class Meta:
-        verbose_name = 'превью товара'
-        verbose_name_plural = 'превью товара'
 
 
 class GalleryImage(BaseImageModel):
@@ -95,11 +95,11 @@ class GalleryImage(BaseImageModel):
                              verbose_name='товар',
                              related_name='gallery_images')
 
+    class Meta:
+        verbose_name = 'фото товара'
+        verbose_name_plural = 'фото товара'
+
     def image_tmb(self):
         return super().image_tmb()
 
     image_tmb.short_description = 'изображение'
-
-    class Meta:
-        verbose_name = 'фото товара'
-        verbose_name_plural = 'фото товара'
