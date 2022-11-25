@@ -16,12 +16,23 @@ class FeedbackForm(forms.ModelForm):
 
     class Meta:
         model = Feedback
-        fields = (Feedback.text.field.name,)
+        name = Feedback.name.field.name
+        mail = Feedback.mail.field.name
+        text = Feedback.text.field.name
+        fields = (name, mail, text)
         labels = {
-            Feedback.text.field.name: 'Отзыв',
+            name: 'Имя',
+            mail: 'Почта',
+            text: 'Отзыв',
         }
         widgets = {
-            Feedback.text.field.name: forms.TextInput(
+            name: forms.TextInput(
+                attrs={'class': 'form-control',
+                       'required': True}),
+            mail: forms.TextInput(
+                attrs={'class': 'form-control',
+                       'required': True}),
+            text: forms.TextInput(
                 attrs={'class': 'form-control',
                        'required': True}),
         }

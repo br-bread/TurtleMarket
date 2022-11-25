@@ -13,15 +13,18 @@ def feedback(request):
     }
 
     if request.method == 'POST' and form.is_valid():
-        feedback = Feedback(text=form.cleaned_data['text'])
+        name = form.cleaned_data['name']
+        mail = form.cleaned_data['mail']
+        feedback_text = form.cleaned_data['text']
+        feedback = Feedback(name=name, mail=mail, text=feedback_text)
         feedback.save()
         send_mail(
             'Благодарим за отзыв!',
-            ('Здравствуйте! Спасибо за отзыв о плюшевых черепашках,'
+            (f'Здравствуйте, {name}! Спасибо за отзыв о плюшевых черепашках,'
              ' который вы оставили.\n'
-             f"{form.cleaned_data['text']}"),
+             f"{feedback_text}"),
             'from@example.com',
-            ['to@example.com'],
+            [f'{mail}'],
         )
         return redirect('feedback:feedback')
 

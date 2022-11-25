@@ -15,18 +15,20 @@ class FormSavingTests(TestCase):
         feedback_count = Feedback.objects.count()
         test_texts = ['Nice!', 'i love turtles', 'cherepashka']
         for i in test_texts:
-            test_feedback = Feedback(text=i)
+            test_feedback = Feedback.objects.create(name='test_name',
+                                                    mail='test@test.com',
+                                                    text=i)
             test_feedback.full_clean()
-            test_feedback.save()
-        self.assertEqual(feedback_count,
-                         Feedback.objects.count() - len(test_texts))
+        self.assertEqual(feedback_count + len(test_texts),
+                         Feedback.objects.count())
 
     def test_creating_invalid_form(self):
         feedback_count = Feedback.objects.count()
         test_texts = ['', ' ', '  ']
         with self.assertRaises(ValidationError):
             for i in test_texts:
-                test_feedback = Feedback(text=i)
+                test_feedback = Feedback.objects.create(name='test_name',
+                                                        mail='test@test.com',
+                                                        text=i)
                 test_feedback.full_clean()
-                test_feedback.save()
         self.assertEqual(feedback_count, Feedback.objects.count())
