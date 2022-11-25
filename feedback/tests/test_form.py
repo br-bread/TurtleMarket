@@ -24,7 +24,9 @@ class FormTests(TestCase):
 
     def test_redirect(self):
         form_data = {
-            'text': 'test_text'
+            'name': 'test_name',
+            'mail': 'test@test.com',
+            'text': 'test_text',
         }
         response = Client().post(reverse('feedback:feedback'),
                                  data=form_data,

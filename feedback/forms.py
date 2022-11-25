@@ -5,11 +5,8 @@ from .models import Feedback
 
 
 class FeedbackForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(FeedbackForm, self).__init__(*args, **kwargs)
-
     def clean_description(self):
-        s = self.cleaned_data['text']
+        s = self.cleaned_data['text'].replace(' ', '')
         if not s:
             raise ValidationError("Обязательное поле")
         return s

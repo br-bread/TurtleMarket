@@ -16,8 +16,7 @@ def feedback(request):
         name = form.cleaned_data['name']
         mail = form.cleaned_data['mail']
         feedback_text = form.cleaned_data['text']
-        feedback = Feedback(name=name, mail=mail, text=feedback_text)
-        feedback.save()
+        Feedback.objects.create(name=name, mail=mail, text=feedback_text)
         send_mail(
             'Благодарим за отзыв!',
             (f'Здравствуйте, {name}! Спасибо за отзыв о плюшевых черепашках,'
