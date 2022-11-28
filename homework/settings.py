@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'about.apps.AboutConfig',
     'feedback.apps.FeedbackConfig',
+    'users.apps.UsersConfig',
 
     'sorl.thumbnail',
     'django_cleanup.apps.CleanupConfig',
@@ -78,6 +79,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -122,6 +124,9 @@ MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = BASE_DIR / 'sent_emails'
+
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = ''
 
 
 def sorl_delete(**kwargs):

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Главная {% endblock %}
+{% block content %} 
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 colorText text-center">
+      <h2>Лучшие товары</h2>
+      <br>
+    </div>
+    {% for item in items %}
+      <div class="col-4 colorText">
+        {% include "catalog/includes/item.html" %}
+      </div>
+    {% empty %}
+      <div class="col-12 colorText">
+        <h4>Каталог пуст</h4>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
