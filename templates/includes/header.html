@@ -7,6 +7,10 @@
         <img src='{% static 'img/turtle.png' %}' alt="черепашка" style="width:70%">
       </div>
       <div class="col-2 menu">
+        <p class="text-center"><a href="{% url 'users:sign_up' %}" {% if name == 'users:sign_up' %} 
+          class='active'{% endif %}>Аккаунт</a></p>
+      </div>
+      <div class="col-2 menu">
         <p class="text-center"><a href="{% url 'homepage:home' %}" {% if name == 'homepage:home' %} 
           class='active'{% endif %}>На главную</a>
         </p>

@@ -13,7 +13,6 @@ class UserChangeForm(BaseUserChangeForm):
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
-    readonly_fields = ('birthday',)
     fields = ('birthday',)
 
 
@@ -22,17 +21,18 @@ class UserAdmin(BaseUserAdmin):
 
     list_display = ('login', 'email', 'password', 'is_superuser', 'is_staff')
     list_display_links = ('login',)
-    list_filter = ()
-    filter_horizontal = ()
-    ordering = ()
-    add_fieldsets = ()
-    search_fields = ()
     fieldsets = (
         (('Персональная информация'), {'fields': ('login', 'email')}),
         (('Статус'), {
             'fields': ('is_staff', 'is_superuser'),
         }),
     )
+
+    list_filter = ()
+    filter_horizontal = ()
+    ordering = ()
+    add_fieldsets = ()
+    search_fields = ()
 
 
 admin.site.register(User, UserAdmin)

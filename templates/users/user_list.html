@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Зарегестрированные пользователи {% endblock %}
+{% block content %} 
+<div class="row">
+  <div class="col-12">
+    <h2 class="text-center colorText">(〜￣▽￣)〜 Список пользователей 〜(￣▽￣〜)</h2>
+  </div>
+  <div class="col-12">
+    <br>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    {% for user in users %}
+        <div class="col-4 colorText align-items-center text-center">
+          <h4>{{user.login}}</h4>
+          <a href="{% url 'users:profile' %}" class="btn btn-primary colorLight">О пользователе</a>
+            </br>
+        </div>
+      {% empty %}
+      <div class="row text-center">
+        <div class="col-12 colorText">
+          <h4>Список пользователей пуст</h4>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

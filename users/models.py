@@ -64,8 +64,9 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birthday = models.DateField('дата рождения',
+    user = models.OneToOneField(User, on_delete=models.CASCADE,
+                                related_name='profile')
+    birthday = models.DateField('день рождения',
                                 blank=True,
                                 null=True)
 
