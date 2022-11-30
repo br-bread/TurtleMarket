@@ -1,10 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from . import forms
-from .models import User
+from .models import Profile, User
 
 
 def sign_up(request):
+    if request.user is not None:
+        return redirect('users:profile')
     template_name = 'users/signup.html'
     form = forms.SignupForm(request.POST or None)
     context = {
@@ -22,12 +25,36 @@ def sign_up(request):
     return render(request, template_name, context)
 
 
+@login_required
 def profile(request):
     template_name = 'users/profile.html'
-    form = 1
+    user = request.user
+    userform = forms.UserForm(request.POST or None,
+                              initial={'login': user.login,
+                                       'email': user.email})
+    profileform = forms.ProfileForm(
+        request.POST or None,
+        initial={'birthday': user.profile.birthday})
     context = {
-        'form': form,
+        'userform': userform,
+        'profileform': profileform,
     }
+
+    if request.method == 'POST':
+        if userform.is_valid():
+            login = userform.cleaned_data['login']
+            email = userform.cleaned_data['email']
+            user = User.objects.get(pk=user.id)
+            user.login = login
+            user.email = email
+            user.save()
+        if profileform.is_valid():
+            birthday = profileform.cleaned_data['birthday']
+            profile = Profile.objects.get(pk=user.id)
+            profile.birthday = birthday
+            profile.save()
+
+        return redirect('users:profile')
 
     return render(request, template_name, context)
 
@@ -44,7 +71,7 @@ def user_list(request):
 def user_detail(request, pk):
     template_name = 'users/user_detail.html'
     user = get_object_or_404(
-        User.objects.only('login', 'mail'), pk=pk)
+        User.objects.only('login', 'email'), pk=pk)
 
     context = {
         'user': user,

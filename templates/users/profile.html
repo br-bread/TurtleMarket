@@ -4,10 +4,49 @@
 {% block content %} 
 
 <div class="container">
-  <div class="row">
-    <div class="col-12 colorText text-center">
+  <div>
+    <div class="colorText text-center">
       <h2>Мой профиль</h2>
       <br>
+    </div>
+    <div class="colorText">
+      <h2>Основная информация</h2>
+      <form method="post" class="colorText">
+        {% csrf_token %}
+        {% for field in userform %}
+          {{ field.errors }}
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.help_text %}
+            <p class="help">{{field.help_text}}</p>
+          {% endif%}
+        {% endfor %}
+        </br>
+        <input type="submit" value="Изменить данные" class = "btn btn-primary">
+      </form>
+    </br>
+    </div>
+    <div class="colorText">
+      <h2>Дополнительная информация</h2>
+      <form method="post" class="colorText">
+        {% csrf_token %}
+        {% for field in profileform %}
+          {{ field.errors }}
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.help_text %}
+            <p class="help">{{field.help_text}}</p>
+          {% endif%}
+        {% endfor %}
+        </br>
+        <input type="submit" value="Изменить данные" class = "btn btn-primary">
+      </form>
+    </br>
+    </div>
+    <div class="colorText text-center">
+      <a href="{% url 'users:change_password'%}" class="btn btn-primary colorLight">Сменить пароль</a>
+      <a href="{% url 'users:logout'%}" class="btn btn-primary colorLight">Выйти</a>
+      <a href="{% url 'users:user_list'%}" class="btn btn-primary colorLight">Другие пользователи</a>
     </div>
   </div>
 </div>

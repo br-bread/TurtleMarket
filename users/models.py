@@ -68,7 +68,8 @@ class Profile(models.Model):
                                 related_name='profile')
     birthday = models.DateField('день рождения',
                                 blank=True,
-                                null=True)
+                                null=True,
+                                help_text='Дата в формате гггг-дд-мм')
 
     class Meta:
         verbose_name = 'профиль'

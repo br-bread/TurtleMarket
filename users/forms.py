@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import User
+from .models import Profile, User
 
 
 class SignupForm(forms.ModelForm):
@@ -12,6 +12,7 @@ class SignupForm(forms.ModelForm):
         password = User.password.field.name
 
         fields = (mail, login, password)
+
         labels = {
             mail: 'Электронная почта',
             login: 'Логин',
@@ -51,3 +52,43 @@ class SignupForm(forms.ModelForm):
                                        'class': 'form-control',
                                        'required': True})
         )
+
+
+class UserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        login = User.login.field.name
+        mail = User.email.field.name
+
+        fields = (mail, login)
+        labels = {
+            mail: 'Электронная почта',
+            login: 'Логин',
+        }
+
+        widgets = {
+            mail: forms.EmailInput(
+                attrs={'class': 'form-control',
+                       'required': True}),
+            login: forms.TextInput(
+                attrs={'class': 'form-control',
+                       'required': True}),
+        }
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        birthday = Profile.birthday.field.name
+
+        fields = (birthday,)
+        labels = {
+            birthday: 'День рождения',
+        }
+        widgets = {
+            birthday: forms.DateInput(
+                attrs={'class': 'form-control',
+                       'required': True}),
+        }

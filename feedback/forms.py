@@ -5,7 +5,7 @@ from .models import Feedback
 
 
 class FeedbackForm(forms.ModelForm):
-    def clean_description(self):
+    def clean_text(self):
         s = self.cleaned_data['text'].replace(' ', '')
         if not s:
             raise ValidationError("Обязательное поле")
