@@ -3,11 +3,20 @@ from django.shortcuts import redirect, render
 
 from . import forms
 from .models import Feedback
+from users.models import User
 
 
 def feedback(request):
+    mail = ''
+    name = ''
+    if request.user.is_authenticated:
+        user = User.objects.get(pk=request.user.id)
+        mail = user.email
+        name = user.login
     template_name = 'feedback/index.html'
-    form = forms.FeedbackForm(request.POST or None)
+    form = forms.FeedbackForm(request.POST or None,
+                              initial={'name': name,
+                                       'mail': mail})
     context = {
         'form': form,
     }
