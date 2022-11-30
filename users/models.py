@@ -43,6 +43,7 @@ class User(AbstractBaseUser):
 
     is_staff = models.BooleanField('администрирование', default=False)
     is_superuser = models.BooleanField('админ', default=False)
+    is_active = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['login', 'password']
@@ -69,7 +70,7 @@ class Profile(models.Model):
     birthday = models.DateField('день рождения',
                                 blank=True,
                                 null=True,
-                                help_text='Дата в формате гггг-дд-мм')
+                                help_text='Дата в формате дд/мм/гггг')
 
     class Meta:
         verbose_name = 'профиль'

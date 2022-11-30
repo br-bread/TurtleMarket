@@ -6,7 +6,7 @@ from .models import Profile, User
 
 
 def sign_up(request):
-    if request.user is not None:
+    if request.user.is_authenticated:
         return redirect('users:profile')
     template_name = 'users/signup.html'
     form = forms.SignupForm(request.POST or None)
