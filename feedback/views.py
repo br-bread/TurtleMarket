@@ -1,9 +1,10 @@
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
+from users.models import User
+
 from . import forms
 from .models import Feedback
-from users.models import User
 
 
 def feedback(request):
