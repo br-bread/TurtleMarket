@@ -70,4 +70,5 @@ ___
 ### Structure of db
 ![er-diagram](readme_images/erd.png)
 - Admin login: test_admin
+- Admin email: test@test.com
 - Admin password: password
