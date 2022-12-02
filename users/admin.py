@@ -19,12 +19,13 @@ class ProfileInline(admin.StackedInline):
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline,)
 
-    list_display = ('login', 'email', 'password', 'is_superuser', 'is_staff')
+    list_display = ('login', 'email', 'is_active',
+                    'is_superuser', 'is_staff', 'last_login')
     list_display_links = ('login',)
     fieldsets = (
         (('Персональная информация'), {'fields': ('login', 'email')}),
         (('Статус'), {
-            'fields': ('is_staff', 'is_superuser'),
+            'fields': ('is_staff', 'is_superuser', 'is_active'),
         }),
     )
 

@@ -23,7 +23,7 @@ class ItemAdmin(admin.ModelAdmin):
         MainImageInline,
         GalleryImageInline,
     ]
-    list_display = ('image_tmb', 'name', 'category', 'is_published')
+    list_display = ('image_tmb_admin', 'name', 'category', 'is_published')
     list_editable = ('is_published',)
     list_display_links = ('name',)
     filter_horizontal = ('tags',)

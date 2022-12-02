@@ -4,7 +4,8 @@ from sorl.thumbnail import get_thumbnail
 
 
 class SluggedModel(models.Model):
-    slug = models.SlugField(max_length=200, help_text='Максимум 200 символов')
+    slug = models.SlugField(max_length=200,
+                            help_text='Максимальная длина 200 символов')
 
     class Meta:
         abstract = True
@@ -13,7 +14,7 @@ class SluggedModel(models.Model):
 class BaseModel(models.Model):
     name = models.CharField('название',
                             max_length=150,
-                            help_text='Максимальная длина - 150 символов',
+                            help_text='Максимальная длина 150 символов',
                             unique=True)
     is_published = models.BooleanField('опубликовано', default=True)
 

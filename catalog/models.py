@@ -43,7 +43,7 @@ class Item(BaseModel):
     objects = ItemManager()
     name = models.CharField('название',
                             max_length=150,
-                            help_text='Максимальная длина - 150 символов',
+                            help_text='Максимальная длина 150 символов',
                             unique=False)
     is_on_main = models.BooleanField('на главной',
                                      default=False,
@@ -69,8 +69,18 @@ class Item(BaseModel):
                 f'<img src="{self.main_image.get_img_300x300.url}">'
             )
         return "Нет изображения"
+
+    def image_tmb_admin(self):
+        if self.main_image.upload:
+            return mark_safe(
+                f'<img src="{self.main_image.get_img_50x50.url}">'
+            )
+        return "Нет изображения"
+
     image_tmb.short_description = 'превью'
     image_tmb.allow_tags = True
+    image_tmb_admin.short_description = 'превью'
+    image_tmb_admin.allow_tags = True
 
 
 class MainImage(BaseImageModel):

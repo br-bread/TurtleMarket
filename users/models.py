@@ -41,9 +41,9 @@ class User(AbstractBaseUser):
                               blank=False,
                               unique=True)
 
-    is_staff = models.BooleanField('администрирование', default=False)
+    is_staff = models.BooleanField('сотрудник', default=False)
     is_superuser = models.BooleanField('админ', default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField('активный пользователь', default=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['login', 'password']
