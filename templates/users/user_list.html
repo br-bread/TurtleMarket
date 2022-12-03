@@ -13,9 +13,14 @@
 <div class="container">
   <div class="row">
     {% for user in users %}
-        <div class="col-4 colorText align-items-center text-center">
-          <h4>{{user.login}}</h4>
-          <a href="{% url 'users:user_detail' pk=user.id %}" class="btn btn-primary colorLight">О пользователе</a>
+        <div class="col-3 colorText align-items-center text-center">
+              <div class="card" style="width: 15rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{user.login}}</h5>
+                  <p class="card-text">{{user.email}}</p>
+                  <a href="{% url 'users:user_detail' pk=user.id %}" class="btn btn-primary">О пользователе</a>
+                </div>
+              </div>
             </br>
         </div>
       {% empty %}
