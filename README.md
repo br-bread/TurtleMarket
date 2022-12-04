@@ -66,9 +66,10 @@ Then go to http://127.0.0.1:8000
 To store DEBUG and SECRET_KEY parameters are used environment variables.
 You can create and set values, or change the value in settings.py
 ___
-## Added test database
+## Added test database with test data for easy review
 ### Structure of db
 ![er-diagram](readme_images/erd.png)
+### Test admin
 - Admin login: test_admin
 - Admin email: test@test.com
 - Admin password: password

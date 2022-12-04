@@ -133,5 +133,30 @@
             2
         ]
     }
+},
+{
+    "model": "catalog.mainimage",
+    "pk": 1,
+    "fields": {
+        "upload": "uploads/41pic8Rkl1L.jpg",
+        "item": 5
+    }
+},
+{
+    "model": "catalog.mainimage",
+    "pk": 2,
+    "fields": {
+        "upload": "uploads/a8a81c5aa7390d6d3e0f0044df390c63.jpg",
+        "item": 4
+    }
+},
+{
+    "model": "catalog.mainimage",
+    "pk": 3,
+    "fields": {
+        "upload": "uploads/507_1.jpg",
+        "item": 2
+    }
 }
 ]
+ 
