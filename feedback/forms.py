@@ -5,11 +5,18 @@ from .models import Feedback
 
 
 class FeedbackForm(forms.ModelForm):
+    error_messages = {
+        'required': 'Поле не может быть пустым',
+    }
+
     def clean_text(self):
-        s = self.cleaned_data['text'].replace(' ', '')
-        if not s:
-            raise ValidationError("Обязательное поле")
-        return s
+        cleaned_data = super(FeedbackForm, self).clean()
+        text = self.cleaned_data['text'].replace(' ', '')
+        if not text:
+            raise ValidationError(
+                self.error_messages['required'],
+                code='required',)
+        return cleaned_data
 
     class Meta:
         model = Feedback
