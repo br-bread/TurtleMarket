@@ -1,9 +1,20 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import Profile, User
 
 
 class SignupForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.fields['password_confirm'] = forms.CharField(
+            max_length=128,
+            required=True,
+            label='Подтвердите пароль',
+            widget=forms.PasswordInput(attrs={
+                                       'class': 'form-control',
+                                       'required': True})
+        )
 
     class Meta:
         model = User
@@ -31,27 +42,21 @@ class SignupForm(forms.ModelForm):
                        'required': True}),
         }
 
-        def clean(self):
-            cleaned_data = super(SignupForm, self).clean()
-            password = cleaned_data.get("password")
-            password_confirm = cleaned_data.get("password_confirm")
+    error_messages = {
+        'password_mismatch': 'Пароли не совпадают',
+    }
 
-            if password != password_confirm:
-                self.add_error('password_confirm', "Пароли не совпадают")
-                raise forms.ValidationError(
-                    "password and confirm_password does not match"
-                )
+    def clean_password_confirm(self):
+        cleaned_data = super(SignupForm, self).clean()
+        password = cleaned_data.get("password")
+        password_confirm = cleaned_data.get("password_confirm")
 
-    def __init__(self, *args, **kwargs):
-        super(SignupForm, self).__init__(*args, **kwargs)
-        self.fields['password_confirm'] = forms.CharField(
-            max_length=128,
-            required=True,
-            label='Подтвердите пароль',
-            widget=forms.PasswordInput(attrs={
-                                       'class': 'form-control',
-                                       'required': True})
-        )
+        if password != password_confirm:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'],
+                code='password_mismatch',
+            )
+        return cleaned_data
 
 
 class UserForm(forms.ModelForm):
