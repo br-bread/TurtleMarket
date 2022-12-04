@@ -6,26 +6,37 @@
       <div class="col-1">
         <img src='{% static 'img/turtle.png' %}' alt="черепашка" style="width:70%">
       </div>
-      <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'users:sign_up' %}" {% if name == 'users:sign_up' %} 
-          class='active'{% endif %}>Аккаунт</a></p>
+      <div class="col-2">
+        <a class="nav-link dropdown-toggle colorLight menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Аккаунт
+        </a>
+        <ul class="dropdown-menu">
+          {% if user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'users:profile' %}">Мой профиль</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
+          {% else %}
+            <li><a class="dropdown-item" href="{% url 'users:login' %}">Войти</a></li>
+            <li><a class="dropdown-item" href="{% url 'users:sign_up' %}">Зарегистрироваться</a></li>
+          {% endif %}
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="{% url 'users:user_list'%}">Список пользователей</a></li>
+        </ul>
       </div>
       <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'homepage:home' %}" {% if name == 'homepage:home' %} 
-          class='active'{% endif %}>На главную</a>
-        </p>
+        <a href="{% url 'homepage:home' %}" {% if name == 'homepage:home' %} 
+          class='active'{% endif %}>{% if name == 'homepage:home' %} Главная {% else %} На главную {% endif %}</a>
       </div>
       <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'catalog:item_list' %}" {% if name == 'catalog:item_list' %} 
-          class='active'{% endif %}>Список товаров</a></p>
+        <a href="{% url 'catalog:item_list' %}" {% if name == 'catalog:item_list' %} 
+          class='active'{% endif %}>Список товаров</a>
       </div>
       <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'feedback:feedback' %}" {% if name == 'feedback:feedback' %} 
-          class='active'{% endif %}>Оставить отзыв</a></p>
+        <a href="{% url 'feedback:feedback' %}" {% if name == 'feedback:feedback' %} 
+          class='active'{% endif %}>Оставить отзыв</a>
       </div>
       <div class="col-2 menu">
-        <p class="text-center"><a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
-          class='active'{% endif %}>О проекте</a></p>
+        <a href="{% url 'about:description' %}" {% if name == 'about:description' %} 
+          class='active'{% endif %}>О проекте</a>
       </div>
       {% endwith %}
     </div>
